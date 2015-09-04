@@ -33,6 +33,7 @@
   "homepage": "https://github.com/kentcdodds/validate-commit-msg#readme",
   "devDependencies": {
     "chai": "3.2.0",
+    "codecov.io": "0.1.6",
     "commitizen": "1.0.4",
     "cz-conventional-changelog": "1.1.0",
     "ghooks": "0.3.2",
