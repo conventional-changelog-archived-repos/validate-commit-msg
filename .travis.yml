@@ -13,5 +13,7 @@ before_script:
   - npm prune
 script:
   - npm t
+  - npm run check-coverage
 after_success:
+  - npm run report-coverage
   - npm run semantic-release
