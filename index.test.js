@@ -99,6 +99,11 @@ describe('validate-commit-msg.js', function() {
     it('should ignore msg prefixed with "WIP: "', function() {
       expect(m.validateMessage('WIP: bullshit')).to.equal(VALID);
     });
+
+
+    it('should handle undefined message"', function() {
+      expect(m.validateMessage()).to.equal(INVALID);
+    });
   });
 
   afterEach(function() {
