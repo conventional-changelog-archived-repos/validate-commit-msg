@@ -47,6 +47,7 @@ describe('validate-commit-msg.js', function() {
       expect(m.validateMessage('chore(*): something')).to.equal(VALID);
       expect(m.validateMessage('chore(guide/location): something')).to.equal(VALID);
       expect(m.validateMessage('revert(foo): something')).to.equal(VALID);
+      expect(m.validateMessage('custom(baz): something')).to.equal(VALID);
       expect(errors).to.deep.equal([]);
     });
 
@@ -97,7 +98,7 @@ describe('validate-commit-msg.js', function() {
 
 
     it('should ignore msg prefixed with "WIP: "', function() {
-      expect(m.validateMessage('WIP: bullshit')).to.equal(VALID);
+      expect(m.validateMessage('WIP: stuff')).to.equal(VALID);
     });
   });
 

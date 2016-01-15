@@ -7,9 +7,51 @@
 [![MIT License](https://img.shields.io/npm/l/validate-commit-msg.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
 
-
 This provides you a binary that you can use as a githook to validate the commit message. I recommend
 [ghooks](http://npm.im/ghooks). You'll want to make this part of the `commit-msg` githook.
+
+Validates that your commit message follows this format:
+
+```
+<type>(<scope>): <subject>
+```
+
+## Usage
+
+### options
+
+You can specify options in `package.json`
+
+```javascript
+{
+  "config": {
+    "validate-commit-msg": {
+      "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "chore", "revert"], // default
+      "warnOnFail": false, // default
+      "maxSubjectLength": 100 // default
+    }
+  }
+}
+```
+
+#### types
+
+These are the types that are allowed for your commit message. If omitted, the value is what is shown above.
+
+You can also specify: `"types": "*"` to indicate that you don't wish to validate types
+
+#### warnOnFail
+
+If this is set to `true` errors will be logged to the console, however the commit will still pass.
+
+#### maxSubjectLength
+
+This will control the maximum length of the subject.
+
+### Other notes
+
+If the commit message begins with `WIP` then none of the validation will happen.
+
 
 ## Credits
 
