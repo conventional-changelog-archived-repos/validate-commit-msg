@@ -19,7 +19,7 @@ var findup = require('findup');
 var config = getConfig();
 var MAX_LENGTH = config.maxSubjectLength || 100;
 var PATTERN = /^((?:fixup!\s*)?(\w*)(\(([\w\$\.\*/-]*)\))?\: (.*))(\n|$)/;
-var IGNORED = /^WIP\:/;
+var IGNORED = /^WIP/;
 var TYPES = config.types || ['feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'chore', 'revert'];
 
 var error = function() {
