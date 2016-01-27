@@ -101,9 +101,12 @@ describe('validate-commit-msg.js', function() {
       expect(m.validateMessage('WIP stuff')).to.equal(VALID);
     });
 
-
     it('should handle undefined message"', function() {
       expect(m.validateMessage()).to.equal(INVALID);
+    });
+
+    it('should allow semver style commits', function() {
+      expect(m.validateMessage('v1.0.0-alpha.1')).to.equal(VALID);
     });
   });
 
