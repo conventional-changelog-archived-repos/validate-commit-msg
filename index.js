@@ -15,11 +15,12 @@ var fs = require('fs');
 var util = require('util');
 var resolve = require('path').resolve;
 var findup = require('findup');
+var semverRegex = require('semver-regex')
 
 var config = getConfig();
 var MAX_LENGTH = config.maxSubjectLength || 100;
 var PATTERN = /^((?:fixup!\s*)?(\w*)(\(([\w\$\.\*/-]*)\))?\: (.*))(\n|$)/;
-var IGNORED = /^WIP/;
+var IGNORED = new RegExp(util.format('(^WIP)|(^%s$)', semverRegex().source));
 var TYPES = config.types || ['feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'chore', 'revert'];
 
 var error = function() {
