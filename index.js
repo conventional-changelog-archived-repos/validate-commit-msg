@@ -88,6 +88,10 @@ if (process.argv.join('').indexOf('mocha') === -1) {
   var commitMsgFile = process.argv[2] || './.git/COMMIT_EDITMSG';
   var incorrectLogFile = commitMsgFile.replace('COMMIT_EDITMSG', 'logs/incorrect-commit-msgs');
 
+  var hasToString = function hasToString(x) {
+    return x && typeof x.toString === 'function';
+  };
+
   fs.readFile(commitMsgFile, function(err, buffer) {
     var msg = firstLineFromBuffer(buffer);
 
@@ -100,7 +104,7 @@ if (process.argv.join('').indexOf('mocha') === -1) {
     }
 
     function firstLineFromBuffer(buffer) {
-      return buffer.toString().split('\n').shift();
+      return hasToString(buffer) && buffer.toString().split('\n').shift();
     }
   });
 }
