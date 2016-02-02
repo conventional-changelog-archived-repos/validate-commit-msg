@@ -2,6 +2,7 @@
   "name": "validate-commit-msg",
   "description": "Script to validate a commit message follows the conventional changelog standard",
   "main": "index.js",
+  "version": "0.0.0-development",
   "scripts": {
     "commit": "git-cz",
     "check-coverage": "istanbul check-coverage --statements 96 --branches 81 --functions 87 --lines 96",
