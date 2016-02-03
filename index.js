@@ -105,11 +105,6 @@ if (process.argv.join('').indexOf('mocha') === -1) {
   });
 }
 
-function getTypes() {
-  var defaultTypes = ['feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'chore', 'revert'];
-  return config.types || defaultTypes;
-}
-
 function getConfig() {
   var pkgFile = findup.sync(process.cwd(), 'package.json');
   var pkg = JSON.parse(fs.readFileSync(resolve(pkgFile, 'package.json')));
