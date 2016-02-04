@@ -42,23 +42,23 @@ var validateMessage = function(message) {
   var match = PATTERN.exec(message);
 
   if (!match) {
-    error('does not match "<type>(<scope>): <subject>" ! was: ' + message);
-    return failure();
-  }
-
-  var firstLine = match[1];
-  var type = match[2];
-  var scope = match[4];
-  var subject = match[5];
-
-  if (firstLine.length > MAX_LENGTH) {
-    error('is longer than %d characters !', MAX_LENGTH);
+    error('does not match "<type>(<scope>): <subject>" !');
     isValid = false;
-  }
+  } else {
+    var firstLine = match[1];
+    var type = match[2];
+    var scope = match[4];
+    var subject = match[5];
 
-  if (TYPES !== '*' && TYPES.indexOf(type) === -1) {
-    error('"%s" is not allowed type !', type);
-    return failure();
+    if (firstLine.length > MAX_LENGTH) {
+      error('is longer than %d characters !', MAX_LENGTH);
+      isValid = false;
+    }
+
+    if (TYPES !== '*' && TYPES.indexOf(type) === -1) {
+      error('"%s" is not allowed type !', type);
+      isValid = false;
+    }
   }
 
   // Some more ideas, do want anything like this ?
@@ -71,11 +71,14 @@ var validateMessage = function(message) {
   // - auto correct typos in type ?
   // - store incorrect messages, so that we can learn
 
-  return isValid ? true : failure();
+  isValid = isValid || config.warnOnFail;
 
-  function failure() {
-    return config.warnOnFail ? true : false;
+  // Display original message when it is not valid, otherwise it will be lost
+  if (!isValid && message) {
+    console.log(message);
   }
+
+  return isValid;
 };
 
 
@@ -108,11 +111,6 @@ if (process.argv.join('').indexOf('mocha') === -1) {
       return hasToString(buffer) && buffer.toString().split('\n').shift();
     }
   });
-}
-
-function getTypes() {
-  var defaultTypes = ['feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'chore', 'revert'];
-  return config.types || defaultTypes;
 }
 
 function getConfig() {

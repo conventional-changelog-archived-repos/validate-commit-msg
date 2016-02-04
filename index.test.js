@@ -49,14 +49,16 @@ describe('validate-commit-msg.js', function() {
       expect(m.validateMessage('revert(foo): something')).to.equal(VALID);
       expect(m.validateMessage('custom(baz): something')).to.equal(VALID);
       expect(errors).to.deep.equal([]);
+      expect(logs).to.deep.equal([]);
     });
 
 
     it('should validate 100 characters length', function() {
-      var msg = "fix($compile): something super mega extra giga tera long, maybe even longer and longer and longer... ";
+      var msg = 'fix($compile): something super mega extra giga tera long, maybe even longer and longer and longer... ';
 
       expect(m.validateMessage(msg)).to.equal(INVALID);
       expect(errors).to.deep.equal(['INVALID COMMIT MSG: is longer than 100 characters !']);
+      expect(logs).to.deep.equal([msg]);
     });
 
     it('should work fine with a bigger body', function() {
@@ -68,8 +70,10 @@ describe('validate-commit-msg.js', function() {
         'Closes #14',
         'BREAKING CHANGE: Something is totally broken :-('
       ].join('\n');
+
       expect(m.validateMessage(message)).to.equal(VALID);
       expect(errors).to.deep.equal([]);
+      expect(logs).to.deep.equal([]);
     });
 
 
@@ -77,28 +81,38 @@ describe('validate-commit-msg.js', function() {
       var msg = 'not correct format';
 
       expect(m.validateMessage(msg)).to.equal(INVALID);
-      expect(errors).to.deep.equal(['INVALID COMMIT MSG: does not match "<type>(<scope>): <subject>" ! was: not correct format']);
+      expect(errors).to.deep.equal(['INVALID COMMIT MSG: does not match "<type>(<scope>): <subject>" !']);
+      expect(logs).to.deep.equal([msg]);
     });
 
 
     it('should validate type', function() {
-      expect(m.validateMessage('weird($filter): something')).to.equal(INVALID);
+      var msg = 'weird($filter): something';
+
+      expect(m.validateMessage(msg)).to.equal(INVALID);
       expect(errors).to.deep.equal(['INVALID COMMIT MSG: "weird" is not allowed type !']);
+      expect(logs).to.deep.equal([msg]);
     });
 
 
     it('should allow empty scope', function() {
       expect(m.validateMessage('fix: blablabla')).to.equal(VALID);
+      expect(errors).to.deep.equal([]);
+      expect(logs).to.deep.equal([]);
     });
 
 
     it('should allow dot in scope', function() {
       expect(m.validateMessage('chore(mocks.$httpBackend): something')).to.equal(VALID);
+      expect(errors).to.deep.equal([]);
+      expect(logs).to.deep.equal([]);
     });
 
 
     it('should ignore msg prefixed with "WIP "', function() {
       expect(m.validateMessage('WIP stuff')).to.equal(VALID);
+      expect(errors).to.deep.equal([]);
+      expect(logs).to.not.deep.equal([]);
     });
 
     it('should handle undefined message"', function() {
