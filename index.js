@@ -19,7 +19,7 @@ var semverRegex = require('semver-regex')
 
 var config = getConfig();
 var MAX_LENGTH = config.maxSubjectLength || 100;
-var PATTERN = /^((?:fixup!\s*)?(\w*)(\(([\w\$\.\*/-]*)\))?\: (.*))(\n|$)/;
+var PATTERN = /^((\w+)(?:\(([^\)\s]+)\))?: (.+))(?:\n|$)/;
 var IGNORED = new RegExp(util.format('(^WIP)|(^%s$)', semverRegex().source));
 var TYPES = config.types || ['feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'chore', 'revert'];
 
@@ -47,8 +47,8 @@ var validateMessage = function(message) {
   } else {
     var firstLine = match[1];
     var type = match[2];
-    var scope = match[4];
-    var subject = match[5];
+    var scope = match[3];
+    var subject = match[4];
 
     if (firstLine.length > MAX_LENGTH) {
       error('is longer than %d characters !', MAX_LENGTH);
