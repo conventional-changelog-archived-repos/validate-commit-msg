@@ -62,6 +62,7 @@ describe('validate-commit-msg.js', function() {
       expect(logs).to.deep.equal([msg]);
     });
 
+
     it('should work fine with a bigger body', function() {
       var message = [
         'chore(build): something',
@@ -117,11 +118,6 @@ describe('validate-commit-msg.js', function() {
     });
 
 
-    it('should not allow msg prefixed with "fixup!"', function() {
-      expect(m.validateMessage('fixup! fix($compile): something')).to.equal(INVALID);
-    });
-
-
     it('should handle undefined message"', function() {
       expect(m.validateMessage()).to.equal(INVALID);
     });
@@ -129,6 +125,12 @@ describe('validate-commit-msg.js', function() {
 
     it('should allow semver style commits', function() {
       expect(m.validateMessage('v1.0.0-alpha.1')).to.equal(VALID);
+    });
+
+
+    it('should allow fixup! and squash! commits', function() {
+      expect(m.validateMessage('fixup! fix($compile): something')).to.equal(VALID);
+      expect(m.validateMessage('squash! fix($compile): something super mega extra giga tera long, maybe even longer and longer and longer...')).to.equal(VALID);
     });
   });
 
