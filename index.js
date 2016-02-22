@@ -19,9 +19,11 @@ var semverRegex = require('semver-regex')
 
 var config = getConfig();
 var MAX_LENGTH = config.maxSubjectLength || 100;
-var PATTERN = /^((\w+)(?:\(([^\)\s]+)\))?: (.+))(?:\n|$)/;
 var IGNORED = new RegExp(util.format('(^WIP)|(^%s$)', semverRegex().source));
 var TYPES = config.types || ['feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'chore', 'revert'];
+
+// fixup! and squash! are part of Git, commits tagged with them are not intended to be merged, cf. https://git-scm.com/docs/git-commit
+var PATTERN = /^((fixup! |squash! )?(\w+)(?:\(([^\)\s]+)\))?: (.+))(?:\n|$)/;
 
 var error = function() {
   // gitx does not display it
@@ -46,11 +48,12 @@ var validateMessage = function(message) {
     isValid = false;
   } else {
     var firstLine = match[1];
-    var type = match[2];
-    var scope = match[3];
-    var subject = match[4];
+    var squashing = !!match[2];
+    var type = match[3];
+    var scope = match[4];
+    var subject = match[5];
 
-    if (firstLine.length > MAX_LENGTH) {
+    if (firstLine.length > MAX_LENGTH && !squashing) {
       error('is longer than %d characters !', MAX_LENGTH);
       isValid = false;
     }
