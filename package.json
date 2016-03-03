@@ -51,6 +51,7 @@
       "path": "node_modules/cz-conventional-changelog"
     },
     "validate-commit-msg": {
+      "helpMessage": "\nPlease fix your commit message (and consider using http://npm.im/commitizen)\n",
       "types": [
         "feat",
         "fix",

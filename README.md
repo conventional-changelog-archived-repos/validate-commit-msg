@@ -28,7 +28,8 @@ You can specify options in `package.json`
     "validate-commit-msg": {
       "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "chore", "revert"], // default
       "warnOnFail": false, // default
-      "maxSubjectLength": 100 // default
+      "maxSubjectLength": 100, // default
+      "helpMessage": "" //default
     }
   }
 }
@@ -48,6 +49,10 @@ If this is set to `true` errors will be logged to the console, however the commi
 
 This will control the maximum length of the subject.
 
+#### helpMessage
+
+If provided, the helpMessage string is displayed when a commit message is not valid. This allows projects to provide a better developer experience for new contributors.
+
 ### Other notes
 
 If the commit message begins with `WIP` then none of the validation will happen.
@@ -57,4 +62,3 @@ If the commit message begins with `WIP` then none of the validation will happen.
 
 This was originally developed by contributors to [the angular.js project](https://github.com/angular/angular.js). I
 pulled it out so I could re-use this same kind of thing in other projects.
-
