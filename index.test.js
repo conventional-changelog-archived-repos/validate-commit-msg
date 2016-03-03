@@ -12,6 +12,9 @@ describe('validate-commit-msg.js', function() {
   var VALID = true;
   var INVALID = false;
 
+  // modify project config for testing
+  m.config.helpMessage = undefined;
+
   beforeEach(function() {
     errors.length = 0;
     logs.length = 0;
@@ -85,6 +88,15 @@ describe('validate-commit-msg.js', function() {
       expect(m.validateMessage(msg)).to.equal(INVALID);
       expect(errors).to.deep.equal(['INVALID COMMIT MSG: does not match "<type>(<scope>): <subject>" !']);
       expect(logs).to.deep.equal([msg]);
+    });
+
+    it('should log the helpMessage on invalid commit messages', function() {
+      var msg = 'invalid message';
+      m.config.helpMessage = '\nPlease fix your commit message (and consider using http://npm.im/commitizen)\n';
+      expect(m.validateMessage(msg)).to.equal(INVALID);
+      expect(errors).to.deep.equal(['INVALID COMMIT MSG: does not match "<type>(<scope>): <subject>" !']);
+      expect(logs).to.deep.equal([msg, m.config.helpMessage]);
+      m.config.helpMessage = undefined;
     });
 
 

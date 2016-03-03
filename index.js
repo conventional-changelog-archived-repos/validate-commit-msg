@@ -76,9 +76,14 @@ var validateMessage = function(message) {
 
   isValid = isValid || config.warnOnFail;
 
-  // Display original message when it is not valid, otherwise it will be lost
-  if (!isValid && message) {
-    console.log(message);
+  if(!isValid){
+    if(message){
+      // Display original message when it is not valid, otherwise it will be lost
+      console.log(message);
+    }
+    if(config.helpMessage) {
+      console.log(config.helpMessage);
+    }
   }
 
   return isValid;
@@ -87,6 +92,7 @@ var validateMessage = function(message) {
 
 // publish for testing
 exports.validateMessage = validateMessage;
+exports.config = config;
 
 // hacky start if not run by mocha :-D
 // istanbul ignore next
