@@ -3,6 +3,7 @@
 var expect = require('chai').expect;
 var sinon = require('sinon');
 var m = require('./index');
+var format = require('util').format;
 
 describe('validate-commit-msg.js', function() {
   var originalLog, originalError;
@@ -26,11 +27,13 @@ describe('validate-commit-msg.js', function() {
     sinon.spy(console, 'error');
     sinon.spy(console, 'log');
 
-    function fakeError(msg) {
+    function fakeError() {
+      var msg = format.apply(null, arguments);
       errors.push(msg.replace(/\x1B\[\d+m/g, '')); // uncolor
     }
 
-    function fakeLog(msg) {
+    function fakeLog() {
+      var msg = format.apply(null, arguments);
       logs.push(msg.replace(/\x1B\[\d+m/g, '')); // uncolor
     }
   });
@@ -99,6 +102,16 @@ describe('validate-commit-msg.js', function() {
       m.config.helpMessage = undefined;
     });
 
+    it('should interpolate message into helpMessage', function() {
+      var msg = 'invalid message';
+      m.config.helpMessage = '\nPlease fix your %s\n';
+      var res = format(m.config.helpMessage, msg);
+      expect(m.validateMessage(msg)).to.equal(INVALID);
+
+      m.config.helpMessage = undefined; // reset before failure
+      expect(errors).to.deep.equal(['INVALID COMMIT MSG: does not match "<type>(<scope>): <subject>" !']);
+      expect(logs).to.deep.equal([res]);
+    });
 
     it('should validate type', function() {
       var msg = 'weird($filter): something';
