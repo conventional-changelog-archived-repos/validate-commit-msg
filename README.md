@@ -53,6 +53,8 @@ This will control the maximum length of the subject.
 
 If provided, the helpMessage string is displayed when a commit message is not valid. This allows projects to provide a better developer experience for new contributors.
 
+The `helpMessage` also supports interpoling a single `%s` with the original commit message.
+
 ### Other notes
 
 If the commit message begins with `WIP` then none of the validation will happen.
