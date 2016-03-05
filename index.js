@@ -76,17 +76,23 @@ var validateMessage = function(message) {
 
   isValid = isValid || config.warnOnFail;
 
-  if(!isValid){
-    if(message){
-      // Display original message when it is not valid, otherwise it will be lost
-      console.log(message);
-    }
-    if(config.helpMessage) {
-      console.log(config.helpMessage);
-    }
+  if (isValid) { // exit early and skip messaging logics
+    return true;
   }
 
-  return isValid;
+  var argInHelp = config.helpMessage && config.helpMessage.indexOf('%s') !== -1;
+
+  if (argInHelp) {
+    console.log(config.helpMessage, message);
+  } else if (message) {
+    console.log(message);
+  }
+
+  if (!argInHelp && config.helpMessage) {
+    console.log(config.helpMessage);
+  }
+
+  return false;
 };
 
 
