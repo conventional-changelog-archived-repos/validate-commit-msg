@@ -33,7 +33,16 @@ var error = function() {
 };
 
 
-var validateMessage = function(message) {
+var validateMessage = function(raw) {
+  var message = (raw || '').split('\n').filter(function (str) {
+    return str.indexOf('#') !== 0;
+  }).join('\n');
+
+  if (message === '') {
+    console.log('Aborting commit due to empty commit message.');
+    return false;
+  }
+
   var isValid = true;
 
   if (IGNORED.test(message)) {
