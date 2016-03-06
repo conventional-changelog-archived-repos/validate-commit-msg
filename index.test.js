@@ -142,6 +142,11 @@ describe('validate-commit-msg.js', function() {
       expect(logs).to.not.deep.equal([]);
     });
 
+    it('should allow for empty commits', function() {
+      expect(m.validateMessage('# this is just a comment')).to.equal(INVALID);
+      expect(logs).to.deep.equal(['Aborting commit due to empty commit message.']);
+    });
+
 
     it('should handle undefined message"', function() {
       expect(m.validateMessage()).to.equal(INVALID);
