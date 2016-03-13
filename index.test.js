@@ -162,6 +162,12 @@ describe('validate-commit-msg.js', function() {
       expect(m.validateMessage('fixup! fix($compile): something')).to.equal(VALID);
       expect(m.validateMessage('squash! fix($compile): something super mega extra giga tera long, maybe even longer and longer and longer...')).to.equal(VALID);
     });
+
+    it('should handle merge commits', function() {
+      expect(m.validateMessage('Merge branch \'master\' into validate-commit-msg-integration')).to.equal(VALID);
+      expect(m.validateMessage('Merge branch master into validate-commit-msg-integration')).to.equal(INVALID);
+      expect(m.validateMessage('Merge branch \'master\' into validate-commit_msg-integration')).to.equal(VALID);
+    });
   });
 
   afterEach(function() {
