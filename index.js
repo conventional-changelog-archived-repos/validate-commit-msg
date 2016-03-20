@@ -118,7 +118,7 @@ exports.config = config;
 // istanbul ignore next
 if (process.argv.join('').indexOf('mocha') === -1) {
 
-  var commitMsgFile = process.argv[2] || './.git/COMMIT_EDITMSG';
+  var commitMsgFile = process.argv[2] || getGitFolder() + '/COMMIT_EDITMSG';
   var incorrectLogFile = commitMsgFile.replace('COMMIT_EDITMSG', 'logs/incorrect-commit-msgs');
 
   var hasToString = function hasToString(x) {
@@ -146,4 +146,23 @@ function getConfig() {
   var pkgFile = findup.sync(process.cwd(), 'package.json');
   var pkg = JSON.parse(fs.readFileSync(resolve(pkgFile, 'package.json')));
   return pkg && pkg.config && pkg.config['validate-commit-msg'] || {};
+}
+
+function getGitFolder()
+{
+  var gitDirLocation = './.git';
+  if (!fs.existsSync(gitDirLocation)) {
+      throw new Error('Cannot find file ' + gitDirLocation);
+  }
+
+  if(!fs.lstatSync(gitDirLocation).isDirectory()) {
+     var unparsedText = '' + fs.readFileSync(gitDirLocation);
+     gitDirLocation = unparsedText.substring('gitdir: '.length).trim();
+  }
+
+  if (!fs.existsSync(gitDirLocation)) {
+    throw new Error('Cannot find file ' + gitDirLocation);
+  }
+
+  return gitDirLocation;
 }
