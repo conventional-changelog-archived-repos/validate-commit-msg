@@ -112,6 +112,7 @@ var validateMessage = function(raw) {
 
 // publish for testing
 exports.validateMessage = validateMessage;
+exports.getGitFolder = getGitFolder;
 exports.config = config;
 
 // hacky start if not run by mocha :-D
