@@ -67,6 +67,9 @@ var validateMessage = function(raw) {
     var scope = match[4];
     var subject = match[5];
 
+    var SUBJECT_PATTERN = new RegExp(config.subjectPattern || '.+');
+    var SUBJECT_PATTERN_ERROR_MSG = config.subjectPatternErrorMsg || 'subject does not match subject pattern!';
+
     if (firstLine.length > MAX_LENGTH && !squashing) {
       error('is longer than %d characters !', MAX_LENGTH);
       isValid = false;
@@ -74,6 +77,11 @@ var validateMessage = function(raw) {
 
     if (TYPES !== '*' && TYPES.indexOf(type) === -1) {
       error('"%s" is not allowed type !', type);
+      isValid = false;
+    }
+
+    if (!SUBJECT_PATTERN.exec(subject)) {
+      error(SUBJECT_PATTERN_ERROR_MSG);
       isValid = false;
     }
   }
