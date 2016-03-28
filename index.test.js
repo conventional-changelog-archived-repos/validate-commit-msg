@@ -169,6 +169,18 @@ describe('validate-commit-msg.js', function() {
       expect(m.validateMessage('Merge branch master into validate-commit-msg-integration')).to.equal(INVALID);
       expect(m.validateMessage('Merge branch \'master\' into validate-commit_msg-integration')).to.equal(VALID);
     });
+
+    it('should validate subject against subjectPattern if provided', function() {
+      var msg = 'chore(build): A something Z';
+      m.config.subjectPattern = /^A.*Z$/;
+      expect(m.validateMessage(msg)).to.equal(VALID);
+
+      msg = 'chore(build): something';
+      expect(m.validateMessage(msg)).to.equal(INVALID);
+
+      expect(errors).to.deep.equal(['INVALID COMMIT MSG: subject does not match pattern "/^A.*Z$/"']);
+      expect(logs).to.deep.equal([msg]);
+    });
   });
 
   describe('handle .git as folder', function()

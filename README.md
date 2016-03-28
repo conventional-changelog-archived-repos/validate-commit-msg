@@ -29,7 +29,9 @@ You can specify options in `package.json`
       "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "chore", "revert"], // default
       "warnOnFail": false, // default
       "maxSubjectLength": 100, // default
-      "helpMessage": "" //default
+      "helpMessage": "", //default
+      "subjectPattern": /.+/, // default
+      "subjectPatternErrorMsg": 'subject pattern does not match "%s"' // default
     }
   }
 }
@@ -54,6 +56,21 @@ This will control the maximum length of the subject.
 If provided, the helpMessage string is displayed when a commit message is not valid. This allows projects to provide a better developer experience for new contributors.
 
 The `helpMessage` also supports interpoling a single `%s` with the original commit message.
+
+#### subjectPattern
+
+Optional, accepts a RegExp to match the commit message subject against.
+
+#### subjectPatternErrorMsg
+
+If `subjectPattern` is provided, this message will be displayed if the commit message subject does not match the pattern. Placeholder `%s` can be used to include `subjectPattern` in the message (can be used one time only):
+
+```
+subjectPatternErrorMsg: 'the pattern is %s, but I cannot use %s twice'
+
+// Will print:
+// the pattern is /.+/, but I cannot use %s twice
+```
 
 ### Other notes
 
