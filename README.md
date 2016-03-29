@@ -29,6 +29,8 @@ You can specify options in `package.json`
       "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "chore", "revert"], // default
       "warnOnFail": false, // default
       "maxSubjectLength": 100, // default
+      "subjectPattern": ".+", // default
+      "subjectPatternErrorMsg": 'subject does not match subject pattern!', // default
       "helpMessage": "" //default
     }
   }
@@ -48,6 +50,14 @@ If this is set to `true` errors will be logged to the console, however the commi
 #### maxSubjectLength
 
 This will control the maximum length of the subject.
+
+#### subjectPattern
+
+Optional, accepts a RegExp to match the commit message subject against.
+
+#### subjectPatternErrorMsg
+
+If `subjectPattern` is provided, this message will be displayed if the commit message subject does not match the pattern.
 
 #### helpMessage
 
