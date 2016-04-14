@@ -103,6 +103,17 @@ describe('validate-commit-msg.js', function() {
       m.config.helpMessage = undefined;
     });
 
+    it('should show the entire body when using the %s placeholder', function() {
+      var message = [
+        'some header',
+        '', // BLANK_LINE
+        'Elaborated body'
+      ].join('\n');
+      m.config.helpMessage = '%s';
+      expect(m.validateMessage(message)).to.equal(INVALID);
+      expect(logs).to.deep.equal([message]);
+    });
+
     it('should interpolate message into helpMessage', function() {
       var msg = 'invalid message';
       m.config.helpMessage = '\nPlease fix your %s\n';
