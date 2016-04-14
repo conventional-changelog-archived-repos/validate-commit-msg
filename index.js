@@ -34,9 +34,11 @@ var error = function() {
 
 
 var validateMessage = function(raw) {
-  var message = (raw || '').split('\n').filter(function (str) {
+  var messageWithBody = (raw || '').split('\n').filter(function (str) {
     return str.indexOf('#') !== 0;
   }).join('\n');
+
+  var message = messageWithBody.split('\n').shift();
 
   if (message === '') {
     console.log('Aborting commit due to empty commit message.');
@@ -105,7 +107,7 @@ var validateMessage = function(raw) {
   var argInHelp = config.helpMessage && config.helpMessage.indexOf('%s') !== -1;
 
   if (argInHelp) {
-    console.log(config.helpMessage, message);
+    console.log(config.helpMessage, messageWithBody);
   } else if (message) {
     console.log(message);
   }
@@ -135,7 +137,7 @@ if (process.argv.join('').indexOf('mocha') === -1) {
   };
 
   fs.readFile(commitMsgFile, function(err, buffer) {
-    var msg = firstLineFromBuffer(buffer);
+    var msg = getCommitMessage(buffer);
 
     if (!validateMessage(msg)) {
       fs.appendFile(incorrectLogFile, msg + '\n', function() {
@@ -145,8 +147,8 @@ if (process.argv.join('').indexOf('mocha') === -1) {
       process.exit(0);
     }
 
-    function firstLineFromBuffer(buffer) {
-      return hasToString(buffer) && buffer.toString().split('\n').shift();
+    function getCommitMessage(buffer) {
+      return hasToString(buffer) && buffer.toString();
     }
   });
 }
