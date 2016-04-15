@@ -24,7 +24,7 @@ var TYPES = config.types || ['feat', 'fix', 'docs', 'style', 'refactor', 'perf',
 
 // fixup! and squash! are part of Git, commits tagged with them are not intended to be merged, cf. https://git-scm.com/docs/git-commit
 var PATTERN = /^((fixup! |squash! )?(\w+)(?:\(([^\)\s]+)\))?: (.+))(?:\n|$)/;
-var MERGE_COMMIT_PATTERN = /^Merge branch \'.*\' into .*$/;
+var MERGE_COMMIT_PATTERN = /^Merge branch \'.*\' .*$/;
 var error = function() {
   // gitx does not display it
   // http://gitx.lighthouseapp.com/projects/17830/tickets/294-feature-display-hook-error-message-when-hook-fails
