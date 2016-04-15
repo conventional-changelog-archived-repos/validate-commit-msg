@@ -179,6 +179,7 @@ describe('validate-commit-msg.js', function() {
       expect(m.validateMessage('Merge branch \'master\' into validate-commit-msg-integration')).to.equal(VALID);
       expect(m.validateMessage('Merge branch master into validate-commit-msg-integration')).to.equal(INVALID);
       expect(m.validateMessage('Merge branch \'master\' into validate-commit_msg-integration')).to.equal(VALID);
+      expect(m.validateMessage('Merge branch \'master\' of')).to.equal(VALID);
     });
 
     it('should validate subject against subjectPattern if provided', function() {
