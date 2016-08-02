@@ -65,7 +65,7 @@ describe('validate-commit-msg.js', function() {
       var msg = 'fix($compile): something super mega extra giga tera long, maybe even longer and longer and longer... ';
 
       expect(m.validateMessage(msg)).to.equal(INVALID);
-      expect(errors).to.deep.equal(['INVALID COMMIT MSG: is longer than 100 characters !']);
+      expect(errors).to.deep.equal(['INVALID COMMIT MSG: is longer than 100 characters!']);
       expect(logs).to.deep.equal([msg]);
     });
 
@@ -90,7 +90,7 @@ describe('validate-commit-msg.js', function() {
       var msg = 'not correct format';
 
       expect(m.validateMessage(msg)).to.equal(INVALID);
-      expect(errors).to.deep.equal(['INVALID COMMIT MSG: does not match "<type>(<scope>): <subject>" !']);
+      expect(errors).to.deep.equal(['INVALID COMMIT MSG: does not match "<type>(<scope>): <subject>"!']);
       expect(logs).to.deep.equal([msg]);
     });
 
@@ -98,7 +98,7 @@ describe('validate-commit-msg.js', function() {
       var msg = 'invalid message';
       m.config.helpMessage = '\nPlease fix your commit message (and consider using http://npm.im/commitizen)\n';
       expect(m.validateMessage(msg)).to.equal(INVALID);
-      expect(errors).to.deep.equal(['INVALID COMMIT MSG: does not match "<type>(<scope>): <subject>" !']);
+      expect(errors).to.deep.equal(['INVALID COMMIT MSG: does not match "<type>(<scope>): <subject>"!']);
       expect(logs).to.deep.equal([msg, m.config.helpMessage]);
       m.config.helpMessage = undefined;
     });
@@ -121,7 +121,7 @@ describe('validate-commit-msg.js', function() {
       expect(m.validateMessage(msg)).to.equal(INVALID);
 
       m.config.helpMessage = undefined; // reset before failure
-      expect(errors).to.deep.equal(['INVALID COMMIT MSG: does not match "<type>(<scope>): <subject>" !']);
+      expect(errors).to.deep.equal(['INVALID COMMIT MSG: does not match "<type>(<scope>): <subject>"!']);
       expect(logs).to.deep.equal([res]);
     });
 
@@ -129,7 +129,7 @@ describe('validate-commit-msg.js', function() {
       var msg = 'weird($filter): something';
 
       expect(m.validateMessage(msg)).to.equal(INVALID);
-      expect(errors).to.deep.equal(['INVALID COMMIT MSG: "weird" is not allowed type !']);
+      expect(errors).to.deep.equal(['INVALID COMMIT MSG: "weird" is not an allowed type!']);
       expect(logs).to.deep.equal([msg]);
     });
 
@@ -292,6 +292,13 @@ describe('validate-commit-msg.js', function() {
     });
   });
 
+  describe('should read commit message from ./.git', function() {
+    var commitMsgFile = m.getGitFolder() + '/COMMIT_EDITMSG';
+
+    fs.readFile(commitMsgFile, function(err, buffer) {
+      expect(m.getCommitMessage(buffer)).to.not.equal('');
+    });
+  });
 
   afterEach(function() {
     console.log = originalLog;
