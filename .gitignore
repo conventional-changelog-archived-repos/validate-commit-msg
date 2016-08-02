@@ -6,6 +6,8 @@
 node_modules
 coverage
 nohup.out
+dist
+.nyc_output
 
 *.ignored.*
 *.ignored/
