@@ -20,7 +20,7 @@ var semverRegex = require('semver-regex')
 var config = getConfig();
 var MAX_LENGTH = config.maxSubjectLength || 100;
 var IGNORED = new RegExp(util.format('(^WIP)|(^%s$)', semverRegex().source));
-var TYPES = config.types || ['feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'chore', 'revert'];
+var TYPES = config.types = config.types || ['feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'chore', 'revert'];
 
 // fixup! and squash! are part of Git, commits tagged with them are not intended to be merged, cf. https://git-scm.com/docs/git-commit
 var PATTERN = /^((fixup! |squash! )?(\w+)(?:\(([^\)\s]+)\))?: (.+))(?:\n|$)/;
@@ -78,7 +78,7 @@ var validateMessage = function(raw) {
     }
 
     if (TYPES !== '*' && TYPES.indexOf(type) === -1) {
-      error('"%s" is not allowed type !', type);
+      error('"%s" is not allowed type ! Valid types are: %s', type, config.types.join(', '));
       isValid = false;
     }
 

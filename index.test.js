@@ -129,10 +129,9 @@ describe('validate-commit-msg.js', function() {
       var msg = 'weird($filter): something';
 
       expect(m.validateMessage(msg)).to.equal(INVALID);
-      expect(errors).to.deep.equal(['INVALID COMMIT MSG: "weird" is not allowed type !']);
+      expect(errors[0]).to.equal('INVALID COMMIT MSG: "weird" is not allowed type ! Valid types are: ' + m.config.types.join(', '));
       expect(logs).to.deep.equal([msg]);
     });
-
 
     it('should allow empty scope', function() {
       expect(m.validateMessage('fix: blablabla')).to.equal(VALID);
