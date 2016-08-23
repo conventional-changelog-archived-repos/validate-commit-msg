@@ -42,7 +42,11 @@ You can specify options in `package.json`
 
 These are the types that are allowed for your commit message. If omitted, the value is what is shown above.
 
-You can also specify: `"types": "*"` to indicate that you don't wish to validate types
+You can also specify: `"types": "*"` to indicate that you don't wish to validate types.
+
+Or you can specify the name of a module that exports types according to the
+[conventional-commit-types](https://github.com/adjohnson916/conventional-commit-types)
+spec, e.g. `"types": "conventional-commit-types"`.
 
 #### warnOnFail
 
