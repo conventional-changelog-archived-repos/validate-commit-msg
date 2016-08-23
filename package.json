@@ -36,6 +36,7 @@
     "chai": "3.4.1",
     "codecov.io": "0.1.6",
     "commitizen": "2.5.0",
+    "conventional-commit-types": "^2.0.0",
     "cz-conventional-changelog": "1.1.5",
     "ghooks": "1.0.3",
     "istanbul": "0.4.2",

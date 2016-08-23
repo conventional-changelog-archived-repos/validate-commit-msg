@@ -60,6 +60,28 @@ describe('validate-commit-msg.js', function() {
       expect(logs).to.deep.equal([]);
     });
 
+    it('should resolve types from module', function() {
+      var typesBackup = m.config.types;
+      m.config.types = 'conventional-commit-types';
+
+      expect(m.validateMessage('chore($controller): something')).to.equal(VALID);
+      expect(m.validateMessage('chore(*): something')).to.equal(VALID);
+      expect(m.validateMessage('chore(foo-bar): something')).to.equal(VALID);
+      expect(m.validateMessage('chore(guide/location): something')).to.equal(VALID);
+      expect(m.validateMessage('docs($filter): something')).to.equal(VALID);
+      expect(m.validateMessage('feat($location): something (another thing)')).to.equal(VALID);
+      expect(m.validateMessage('fix($compile): something')).to.equal(VALID);
+      expect(m.validateMessage('refactor($httpBackend): something')).to.equal(VALID);
+      expect(m.validateMessage('revert(foo): something')).to.equal(VALID);
+      expect(m.validateMessage('revert: feat($location): something')).to.equal(VALID);
+      expect(m.validateMessage('style($http): something')).to.equal(VALID);
+      expect(m.validateMessage('test($resource): something')).to.equal(VALID);
+
+      expect(errors).to.deep.equal([]);
+      expect(logs).to.deep.equal([]);
+
+      m.config.types = typesBackup;
+    });
 
     it('should validate 100 characters length', function() {
       var msg = 'fix($compile): something super mega extra giga tera long, maybe even longer and longer and longer... ';

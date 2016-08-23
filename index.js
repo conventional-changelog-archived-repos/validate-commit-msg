@@ -20,7 +20,6 @@ var semverRegex = require('semver-regex')
 var config = getConfig();
 var MAX_LENGTH = config.maxSubjectLength || 100;
 var IGNORED = new RegExp(util.format('(^WIP)|(^%s$)', semverRegex().source));
-var TYPES = config.types = config.types || ['feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'chore', 'revert'];
 
 // fixup! and squash! are part of Git, commits tagged with them are not intended to be merged, cf. https://git-scm.com/docs/git-commit
 var PATTERN = /^((fixup! |squash! )?(\w+)(?:\(([^\)\s]+)\))?: (.+))(?:\n|$)/;
@@ -34,6 +33,13 @@ var error = function() {
 
 
 var validateMessage = function(raw) {
+  var types = config.types = config.types || ['feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'chore', 'revert'];
+
+  // resolve types from a module
+  if (typeof types === 'string' && types !== '*') {
+    types = Object.keys(require(types).types);
+  }
+
   var messageWithBody = (raw || '').split('\n').filter(function (str) {
     return str.indexOf('#') !== 0;
   }).join('\n');
@@ -77,8 +83,8 @@ var validateMessage = function(raw) {
       isValid = false;
     }
 
-    if (TYPES !== '*' && TYPES.indexOf(type) === -1) {
-      error('"%s" is not allowed type ! Valid types are: %s', type, config.types.join(', '));
+    if (types !== '*' && types.indexOf(type) === -1) {
+      error('"%s" is not allowed type ! Valid types are: %s', type, types.join(', '));
       isValid = false;
     }
 
