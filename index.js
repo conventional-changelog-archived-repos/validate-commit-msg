@@ -12,7 +12,6 @@
 'use strict';
 
 var fs = require('fs');
-var conventionalCommitTypes = require('conventional-commit-types');
 var util = require('util');
 var resolve = require('path').resolve;
 var findup = require('findup');
@@ -34,7 +33,7 @@ var error = function() {
 
 
 var validateMessage = function(raw) {
-  var types = config.types = config.types || conventionalCommitTypes;
+  var types = config.types = config.types || 'conventional-commit-types';
 
   // resolve types from a module
   if (typeof types === 'string' && types !== '*') {
