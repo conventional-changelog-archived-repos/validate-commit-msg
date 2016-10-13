@@ -33,7 +33,7 @@ You can specify options in `package.json`
 {
   "config": {
     "validate-commit-msg": {
-      "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "chore", "revert"], // default
+      "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "build", "ci", "chore", "revert"], // default
       "warnOnFail": false, // default
       "maxSubjectLength": 100, // default
       "subjectPattern": ".+", // default
