@@ -15,7 +15,7 @@
 [![Tweet][twitter-badge]][twitter]
 
 This provides you a binary that you can use as a githook to validate the commit message. I recommend
-[husky](http://npm.im/husky). You'll want to make this part of the `commit-msg` githook, e.g. when using [husky](http://npm.im/husky), add `"commitmsg": "validate-commit-msg"` to your [npm scripts](https://docs.npmjs.com/misc/scripts) in `package.json`).
+[husky](http://npm.im/husky). You'll want to make this part of the `commit-msg` githook, e.g. when using [husky](http://npm.im/husky), add `"commitmsg": "validate-commit-msg"` to your [npm scripts](https://docs.npmjs.com/misc/scripts) in `package.json`.
 
 Validates that your commit message follows this format:
 
