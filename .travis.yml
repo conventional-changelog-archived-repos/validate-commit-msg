@@ -9,14 +9,11 @@ branches:
 notifications:
   email: false
 node_js:
-  - iojs
-before_install:
-  - npm i -g npm@^2.0.0
+  - '6'
 before_script:
   - npm prune
 script:
-  - npm t
-  - npm run check-coverage
+  - yarn run validate
 after_success:
   - npm run report-coverage
   - npm run semantic-release
