@@ -10,3 +10,5 @@ nohup.out
 *.ignored.*
 *.ignored/
 *.ignored
+.opt-in
+.opt-out

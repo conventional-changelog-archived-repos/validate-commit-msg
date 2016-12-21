@@ -4,11 +4,16 @@
   "main": "index.js",
   "version": "0.0.0-development",
   "scripts": {
+    "add-contributor": "all-contributors add",
+    "generate-contributors": "all-contributors generate",
     "commit": "git-cz",
+    "commitmsg": "opt --in commitmsg --exec \"node ./index.js\"",
+    "precommit": "opt --in precommit --exec \"npm run validate\"",
     "check-coverage": "istanbul check-coverage --statements 100 --branches 90 --functions 100 --lines 100",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "test:watch": "istanbul cover -x *.test.js _mocha -- -R spec -w index.test.js",
     "test": "istanbul cover -x *.test.js _mocha -- -R spec index.test.js",
+    "validate": "npm t && npm run check-coverage",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "bin": {
@@ -33,20 +38,19 @@
   },
   "homepage": "https://github.com/kentcdodds/validate-commit-msg#readme",
   "devDependencies": {
+    "all-contributors-cli": "3.0.7",
     "chai": "3.4.1",
     "codecov.io": "0.1.6",
     "commitizen": "2.5.0",
     "cz-conventional-changelog": "1.1.5",
-    "ghooks": "1.0.3",
+    "husky": "0.12.0",
     "istanbul": "0.4.2",
     "mocha": "2.3.4",
+    "opt-cli": "1.5.1",
     "semantic-release": "4.3.5",
     "sinon": "1.17.2"
   },
   "config": {
-    "ghooks": {
-      "commit-msg": "./index.js && npm t && npm run check-coverage"
-    },
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     },
