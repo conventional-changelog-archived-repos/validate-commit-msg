@@ -39,7 +39,7 @@ You can specify options in `package.json`
       "warnOnFail": false, // default
       "maxSubjectLength": 100, // default
       "subjectPattern": ".+", // default
-      "subjectPatternErrorMsg": 'subject does not match subject pattern!', // default
+      "subjectPatternErrorMsg": "subject does not match subject pattern!", // default
       "helpMessage": "" //default
     }
   }
