@@ -93,6 +93,10 @@ var validateMessage = function(raw) {
       isValid = false;
     }
 
+    if (config.autoFix) {
+      subject = lowercaseFirstLetter(subject);
+    }
+
     if (!SUBJECT_PATTERN.exec(subject)) {
       error(SUBJECT_PATTERN_ERROR_MSG);
       isValid = false;
@@ -102,8 +106,6 @@ var validateMessage = function(raw) {
   // Some more ideas, do want anything like this ?
   // - Validate the rest of the message (body, footer, BREAKING CHANGE annotations)
   // - allow only specific scopes (eg. fix(docs) should not be allowed ?
-  // - auto correct the type to lower case ?
-  // - auto correct first letter of the subject to lower case ?
   // - auto add empty line after subject ?
   // - auto remove empty () ?
   // - auto correct typos in type ?
@@ -191,4 +193,8 @@ function getGitFolder()
 
 function lowercase(string) {
   return string.toLowerCase();
+}
+
+function lowercaseFirstLetter(string) {
+  return lowercase(string.charAt(0)) + string.slice(1);
 }

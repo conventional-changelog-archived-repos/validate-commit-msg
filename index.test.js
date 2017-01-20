@@ -219,8 +219,10 @@ describe('validate-commit-msg.js', function() {
 
     it('should lowercase type when autoFix is true and make it valid', function() {
       m.config.autoFix = true;
+      m.config.subjectPattern = /^a.*Z$/;
       var msg = 'Chore(build): A something Z';
       expect(m.validateMessage(msg)).to.equal(VALID);
+      m.config.autoFix = false;
     });
 
     it('should show invalid when autoFix is false and type starts with capital letter', function() {
