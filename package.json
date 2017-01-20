@@ -68,7 +68,8 @@
         "revert",
         "custom"
       ],
-      "warnOnFail": false
+      "warnOnFail": false,
+      "autoFix": false
     }
   },
   "dependencies": {

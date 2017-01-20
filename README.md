@@ -40,7 +40,8 @@ You can specify options in `package.json`
       "maxSubjectLength": 100, // default
       "subjectPattern": ".+", // default
       "subjectPatternErrorMsg": "subject does not match subject pattern!", // default
-      "helpMessage": "" //default
+      "helpMessage": "", // default
+      "autoFix": false // default
     }
   }
 }
@@ -76,7 +77,11 @@ If `subjectPattern` is provided, this message will be displayed if the commit me
 
 If provided, the helpMessage string is displayed when a commit message is not valid. This allows projects to provide a better developer experience for new contributors.
 
-The `helpMessage` also supports interpoling a single `%s` with the original commit message.
+The `helpMessage` also supports interpolating a single `%s` with the original commit message.
+
+#### autoFix
+
+If this is set to `true`, type will be auto fixed to lowercase, and the commit will pass.
 
 ### Other notes
 

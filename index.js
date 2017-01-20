@@ -83,6 +83,11 @@ var validateMessage = function(raw) {
       isValid = false;
     }
 
+    // If should auto fix type then do it here
+    if (config.autoFix) {
+      type = lowercase(type);
+    }
+
     if (types !== '*' && types.indexOf(type) === -1) {
       error('"%s" is not allowed type ! Valid types are: %s', type, types.join(', '));
       isValid = false;
@@ -182,4 +187,8 @@ function getGitFolder()
   }
 
   return gitDirLocation;
+}
+
+function lowercase(string) {
+  return string.toLowerCase();
 }

@@ -216,6 +216,18 @@ describe('validate-commit-msg.js', function() {
       expect(errors).to.deep.equal(['INVALID COMMIT MSG: subject does not match subject pattern!']);
       expect(logs).to.deep.equal([msg]);
     });
+
+    it('should lowercase type when autoFix is true and make it valid', function() {
+      m.config.autoFix = true;
+      var msg = 'Chore(build): A something Z';
+      expect(m.validateMessage(msg)).to.equal(VALID);
+    });
+
+    it('should show invalid when autoFix is false and type starts with capital letter', function() {
+      m.config.autoFix = false;
+      var msg = 'Chore(build): A something Z';
+      expect(m.validateMessage(msg)).to.equal(INVALID);
+    });
   });
 
   describe('handle .git as folder', function()
