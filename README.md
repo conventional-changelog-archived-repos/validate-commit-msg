@@ -81,7 +81,7 @@ The `helpMessage` also supports interpolating a single `%s` with the original co
 
 #### autoFix
 
-If this is set to `true`, type will be auto fixed to lowercase, and the commit will pass.
+If this is set to `true`, type will be auto fixed to all lowercase, subject first letter will be lowercased, and the commit will pass.
 
 ### Other notes
 
