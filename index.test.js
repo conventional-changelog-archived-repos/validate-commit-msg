@@ -95,7 +95,6 @@ describe('validate-commit-msg.js', function() {
       expect(logs).to.deep.equal([msg]);
     });
 
-
     it('should work fine with a bigger body', function() {
       var message = [
         'chore(build): something',
@@ -110,7 +109,6 @@ describe('validate-commit-msg.js', function() {
       expect(errors).to.deep.equal([]);
       expect(logs).to.deep.equal([]);
     });
-
 
     it('should validate "<type>(<scope>): <subject>" format', function() {
       var msg = 'not correct format';
@@ -165,13 +163,11 @@ describe('validate-commit-msg.js', function() {
       expect(logs).to.deep.equal([]);
     });
 
-
     it('should allow dot in scope', function() {
       expect(m.validateMessage('chore(mocks.$httpBackend): something')).to.equal(VALID);
       expect(errors).to.deep.equal([]);
       expect(logs).to.deep.equal([]);
     });
-
 
     it('should ignore msg prefixed with "WIP "', function() {
       expect(m.validateMessage('WIP stuff')).to.equal(VALID);
@@ -184,16 +180,13 @@ describe('validate-commit-msg.js', function() {
       expect(logs).to.deep.equal(['Aborting commit due to empty commit message.']);
     });
 
-
     it('should handle undefined message"', function() {
       expect(m.validateMessage()).to.equal(INVALID);
     });
 
-
     it('should allow semver style commits', function() {
       expect(m.validateMessage('v1.0.0-alpha.1')).to.equal(VALID);
     });
-
 
     it('should allow fixup! and squash! commits', function() {
       expect(m.validateMessage('fixup! fix($compile): something')).to.equal(VALID);
@@ -234,21 +227,21 @@ describe('validate-commit-msg.js', function() {
     });
   });
 
-  describe('handle .git as folder', function()
-  {
+  describe('handle .git as folder', function() {
     before(function() {
       sinon.stub(fs, "existsSync", function() {
         return true;
       });
       sinon.stub(fs, "lstatSync", function() {
         return {
-          isDirectory : function() { return true; }
+          isDirectory: function() {
+            return true;
+          }
         }
       });
     });
 
-    it('should return ./.git when .git is a directory', function()
-    {
+    it('should return ./.git when .git is a directory', function() {
       expect(m.getGitFolder()).to.be.equal('./.git');
     });
 
@@ -258,8 +251,7 @@ describe('validate-commit-msg.js', function() {
     });
   });
 
-  describe('handle .git as file', function()
-  {
+  describe('handle .git as file', function() {
     before(function() {
       sinon.stub(fs, "existsSync", function() {
         return true;
@@ -267,7 +259,9 @@ describe('validate-commit-msg.js', function() {
       sinon.stub(fs, "lstatSync", function(location) {
         //Ensure that we say ./.git is a file, but ../../actual-folder is folder
         return {
-          isDirectory : function() { return location != './.git'; }
+          isDirectory: function() {
+            return location != './.git';
+          }
         }
       });
       sinon.stub(fs, 'readFileSync', function() {
@@ -294,7 +288,7 @@ describe('validate-commit-msg.js', function() {
     });
 
     it('should throw error when ./.git is missing', function() {
-        expect(m.getGitFolder).to.throw('Cannot find file ./.git');
+      expect(m.getGitFolder).to.throw('Cannot find file ./.git');
     });
 
     after(function() {
@@ -310,7 +304,9 @@ describe('validate-commit-msg.js', function() {
       sinon.stub(fs, "lstatSync", function(location) {
         //Ensure that we say ./.git is a file, but ../../actual-folder is folder
         return {
-          isDirectory : function() { return location != './.git'; }
+          isDirectory: function() {
+            return location != './.git';
+          }
         }
       });
       sinon.stub(fs, 'readFileSync', function() {
@@ -329,11 +325,9 @@ describe('validate-commit-msg.js', function() {
     });
   });
 
-
   afterEach(function() {
     console.log = originalLog;
     console.error = originalError;
   });
-
 
 });
