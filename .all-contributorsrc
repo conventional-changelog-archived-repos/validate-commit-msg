@@ -235,7 +235,8 @@
       "profile": "http://www.spyros.io",
       "contributions": [
         "code",
-        "doc"
+        "doc",
+        "test"
       ]
     }
   ]
