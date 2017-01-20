@@ -39,6 +39,10 @@ describe('validate-commit-msg.js', function() {
     }
   });
 
+  afterEach(function() {
+    m.config.autoFix = false;
+  });
+
   describe('validateMessage', function() {
 
     it('should be valid', function() {
@@ -222,11 +226,9 @@ describe('validate-commit-msg.js', function() {
       m.config.subjectPattern = /^a.*Z$/;
       var msg = 'Chore(build): A something Z';
       expect(m.validateMessage(msg)).to.equal(VALID);
-      m.config.autoFix = false;
     });
 
     it('should show invalid when autoFix is false and type starts with capital letter', function() {
-      m.config.autoFix = false;
       var msg = 'Chore(build): A something Z';
       expect(m.validateMessage(msg)).to.equal(INVALID);
     });
