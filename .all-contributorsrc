@@ -224,7 +224,20 @@
       "name": "Bo Lingen",
       "avatar_url": "https://avatars.githubusercontent.com/u/16605186?v=3",
       "profile": "https://github.com/citycide",
-      "contributions": ["doc"]
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "spirosikmd",
+      "name": "Spyros Ioakeimidis",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1057324?v=3",
+      "profile": "http://www.spyros.io",
+      "contributions": [
+        "code",
+        "doc",
+        "test"
+      ]
     }
   ]
 }
