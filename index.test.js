@@ -59,6 +59,8 @@ describe('validate-commit-msg.js', function() {
       expect(m.validateMessage('revert: feat($location): something')).to.equal(VALID);
       expect(m.validateMessage('style($http): something')).to.equal(VALID);
       expect(m.validateMessage('test($resource): something')).to.equal(VALID);
+      expect(m.validateMessage('build(gulp): something')).to.equal(VALID);
+      expect(m.validateMessage('ci(Travis): something')).to.equal(VALID);
 
       expect(errors).to.deep.equal([]);
       expect(logs).to.deep.equal([]);
@@ -80,6 +82,8 @@ describe('validate-commit-msg.js', function() {
       expect(m.validateMessage('revert: feat($location): something')).to.equal(VALID);
       expect(m.validateMessage('style($http): something')).to.equal(VALID);
       expect(m.validateMessage('test($resource): something')).to.equal(VALID);
+      expect(m.validateMessage('build(gulp): something')).to.equal(VALID);
+      expect(m.validateMessage('ci(Travis): something')).to.equal(VALID);
 
       expect(errors).to.deep.equal([]);
       expect(logs).to.deep.equal([]);
