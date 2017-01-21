@@ -104,7 +104,7 @@ pulled it out so I could re-use this same kind of thing in other projects.
 [downloads-badge]: https://img.shields.io/npm/dm/validate-commit-msg.svg?style=flat-square
 [npm-stat]: http://npm-stat.com/charts.html?package=validate-commit-msg&from=2016-04-01
 [license-badge]: https://img.shields.io/npm/l/validate-commit-msg.svg?style=flat-square
-[license]: https://github.com/kentcdodds/validate-commit-msg/blob/master/other/LICENSE
+[license]: https://github.com/kentcdodds/validate-commit-msg/blob/master/LICENSE
 [prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 [prs]: http://makeapullrequest.com
 [donate-badge]: https://img.shields.io/badge/$-support-green.svg?style=flat-square
