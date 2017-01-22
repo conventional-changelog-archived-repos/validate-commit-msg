@@ -29,7 +29,21 @@ Validates that your commit message follows this format:
 
 ### options
 
-You can specify options in `package.json`
+You can specify options in `.vcmrc`
+
+```js
+{
+  "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "chore", "revert"], // default
+  "warnOnFail": false, // default
+  "maxSubjectLength": 100, // default
+  "subjectPattern": ".+", // default
+  "subjectPatternErrorMsg": "subject does not match subject pattern!", // default
+  "helpMessage": "", // default
+  "autoFix": false // default
+}
+```
+
+or in `package.json`
 
 ```javascript
 {
@@ -46,6 +60,8 @@ You can specify options in `package.json`
   }
 }
 ```
+
+`.vcmrc` has precedence, if it does not exist, then `package.json` will be used.
 
 #### types
 
