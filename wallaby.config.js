@@ -1,7 +1,7 @@
 module.exports = function() {
   return {
-    files: ['index.js', 'lib/**/*.js', 'package.json'],
-    tests: ['index.test.js', 'test/**/*.js'],
+    files: ['lib/**/*.js', 'package.json'],
+    tests: ['test/**/*.js'],
     env: {
       type: 'node'
     }

@@ -11,8 +11,8 @@
     "precommit": "opt --in precommit --exec \"npm run validate\"",
     "check-coverage": "istanbul check-coverage --statements 100 --branches 90 --functions 100 --lines 100",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
-    "test:watch": "istanbul cover -x *.test.js _mocha -- -R spec -w index.test.js",
-    "test": "istanbul cover -x *.test.js _mocha -- -R spec index.test.js",
+    "test:watch": "istanbul cover -x test/**/*.test.js _mocha -- -R spec -w test/**/*.test.js",
+    "test": "istanbul cover -x test/**/*.test.js _mocha -- -R spec test/**/*.test.js",
     "validate": "npm t && npm run check-coverage",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },

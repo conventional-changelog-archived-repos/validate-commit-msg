@@ -83,6 +83,18 @@ The `helpMessage` also supports interpolating a single `%s` with the original co
 
 If this is set to `true`, type will be auto fixed to all lowercase, subject first letter will be lowercased, and the commit will pass (assuming there's nothing else wrong with it).
 
+### Node
+
+Through node you can use as follows
+
+```javascript
+var validateMessage = require('validate-commit-msg');
+
+var valid = validateMessage('chore(index): an example commit message');
+
+// valid = true
+```
+
 ### Other notes
 
 If the commit message begins with `WIP` then none of the validation will happen.
