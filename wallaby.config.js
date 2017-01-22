@@ -1,6 +1,6 @@
 module.exports = function() {
   return {
-    files: ['index.js', 'package.json'],
+    files: ['index.js', 'lib/**/*.js', 'package.json'],
     tests: ['index.test.js'],
     env: {
       type: 'node'
