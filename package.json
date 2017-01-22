@@ -7,7 +7,7 @@
     "add-contributor": "all-contributors add",
     "generate-contributors": "all-contributors generate",
     "commit": "git-cz",
-    "commitmsg": "opt --in commitmsg --exec \"node ./index.js\"",
+    "commitmsg": "opt --in commitmsg --exec \"node ./lib/cli.js\"",
     "precommit": "opt --in precommit --exec \"npm run validate\"",
     "check-coverage": "istanbul check-coverage --statements 100 --branches 90 --functions 100 --lines 100",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
@@ -17,7 +17,7 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "bin": {
-    "validate-commit-msg": "index.js"
+    "validate-commit-msg": "./lib/cli.js"
   },
   "repository": {
     "type": "git",
@@ -78,6 +78,7 @@
     "semver-regex": "1.0.0"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "lib/cli.js"
   ]
 }
