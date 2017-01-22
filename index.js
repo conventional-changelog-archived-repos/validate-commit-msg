@@ -1,10 +1,8 @@
 'use strict';
 
-var fs = require('fs');
 var util = require('util');
-var resolve = require('path').resolve;
-var findup = require('findup');
 var semverRegex = require('semver-regex');
+var getConfig = require('./lib/getConfig');
 
 var config = getConfig();
 var MAX_LENGTH = config.maxSubjectLength || 100;
@@ -123,32 +121,7 @@ var validateMessage = function(raw) {
 
 // publish for testing
 exports.validateMessage = validateMessage;
-exports.getGitFolder = getGitFolder;
 exports.config = config;
-
-function getConfig() {
-  var pkgFile = findup.sync(process.cwd(), 'package.json');
-  var pkg = JSON.parse(fs.readFileSync(resolve(pkgFile, 'package.json')));
-  return pkg && pkg.config && pkg.config['validate-commit-msg'] || {};
-}
-
-function getGitFolder() {
-  var gitDirLocation = './.git';
-  if (!fs.existsSync(gitDirLocation)) {
-    throw new Error('Cannot find file ' + gitDirLocation);
-  }
-
-  if (!fs.lstatSync(gitDirLocation).isDirectory()) {
-    var unparsedText = '' + fs.readFileSync(gitDirLocation);
-    gitDirLocation = unparsedText.substring('gitdir: '.length).trim();
-  }
-
-  if (!fs.existsSync(gitDirLocation)) {
-    throw new Error('Cannot find file ' + gitDirLocation);
-  }
-
-  return gitDirLocation;
-}
 
 function lowercase(string) {
   return string.toLowerCase();
