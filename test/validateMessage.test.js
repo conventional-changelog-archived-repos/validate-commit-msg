@@ -3,7 +3,7 @@
 var expect = require('chai').expect;
 var fs = require('fs');
 var sinon = require('sinon');
-var m = require('./index');
+var m = require('./../lib/validateMessage');
 var format = require('util').format;
 
 describe('validate-commit-msg.js', function() {
