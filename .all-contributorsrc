@@ -238,6 +238,15 @@
         "doc",
         "test"
       ]
+    },
+    {
+      "login": "travi",
+      "name": "Matt Travi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/126441?v=3",
+      "profile": "https://matt.travi.org",
+      "contributions": [
+        "bug"
+      ]
     }
   ]
 }
