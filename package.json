@@ -79,6 +79,6 @@
   },
   "files": [
     "index.js",
-    "lib/cli.js"
+    "lib"
   ]
 }
