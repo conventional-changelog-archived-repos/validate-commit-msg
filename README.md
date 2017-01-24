@@ -34,6 +34,12 @@ You can specify options in `.vcmrc`
 ```js
 {
   "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "chore", "revert"], // default
+  "scopes": {
+    required: false, // default,
+    allowed: ['button', 'card'], // default is '*' for anything,
+    validate: false, // default,
+    multiple: false // default
+  },
   "warnOnFail": false, // default
   "maxSubjectLength": 100, // default
   "subjectPattern": ".+", // default
@@ -50,6 +56,12 @@ or in `package.json`
   "config": {
     "validate-commit-msg": {
       "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "chore", "revert"], // default
+      "scopes": {
+        required: false, // default,
+        allowed: ['button', 'card'], // default is '*' for anything,
+        validate: false, // default,
+        multiple: false // default
+      },
       "warnOnFail": false, // default
       "maxSubjectLength": 100, // default
       "subjectPattern": ".+", // default
@@ -72,6 +84,28 @@ You can also specify: `"types": "*"` to indicate that you don't wish to validate
 Or you can specify the name of a module that exports types according to the
 [conventional-commit-types](https://github.com/adjohnson916/conventional-commit-types)
 spec, e.g. `"types": "conventional-commit-types"`.
+
+#### scopes
+
+This object defines scope requirements for the commit message. Possible properties are:
+
+##### required
+
+A boolean to define whether a scope is required for all commit messages.
+
+##### allowed
+
+An array of scopes that are allowed for your commit message.
+
+You may also define it as `"*"` which is the default to allow any scope names.
+
+##### validate
+
+A boolean to define whether or not to validate the scope(s) provided.
+
+##### multiple
+
+A boolean to define whether or not to allow multiple scopes.
 
 #### warnOnFail
 
