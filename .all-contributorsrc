@@ -253,7 +253,11 @@
       "name": "Jonathan Garbee",
       "avatar_url": "https://avatars.githubusercontent.com/u/868301?v=3",
       "profile": "http://jonathan.garbee.me",
-      "contributions": []
+      "contributions": [
+        "code",
+        "doc",
+        "test"
+      ]
     }
   ]
 }
