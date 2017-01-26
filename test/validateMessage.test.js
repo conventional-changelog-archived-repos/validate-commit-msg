@@ -219,6 +219,19 @@ describe('validate-commit-msg.js', function() {
       m.config.scope = undefined;
     });
 
+    it('should allow any scope if "*" is defined', function() {
+      var msg = 'feat(anything): Fixed';
+
+      m.config.scope = {
+        validate: true
+      };
+
+      expect(m.validateMessage(msg)).to.equal(VALID);
+      expect(logs).to.deep.equal([]);
+
+      m.config.scope = undefined;
+    });
+
     it('should allow empty scope', function() {
       expect(m.validateMessage('fix: blablabla')).to.equal(VALID);
       expect(errors).to.deep.equal([]);
