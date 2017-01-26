@@ -157,6 +157,81 @@ describe('validate-commit-msg.js', function() {
       expect(logs).to.deep.equal([msg]);
     });
 
+    it('should require a scope', function() {
+      var msg = 'feat: Add new feature';
+
+      m.config.scope = {
+        validate: true,
+        allowed: '*',
+        required: true
+      };
+
+      expect(m.validateMessage(msg)).to.equal(INVALID);
+      expect(errors[0]).to.equal('INVALID COMMIT MSG: a scope is required !');
+      expect(logs).to.deep.equal([msg]);
+
+      m.config.scope = undefined;
+    });
+
+    it('should validate scope', function() {
+      var msg = 'feat(nonexistant): Add new feature';
+
+      m.config.scope = {
+        validate: true,
+        allowed: ['button', 'card']
+      };
+
+      expect(m.validateMessage(msg)).to.equal(INVALID);
+      expect(errors[0]).to.equal('INVALID COMMIT MSG: "nonexistant" is not an allowed scope ! Valid scope are: ' + m.config.scope.allowed.join(', '));
+      expect(logs).to.deep.equal([msg]);
+
+      m.config.scope = undefined;
+    });
+
+    it('should only allow a single scope when multiples is off', function() {
+      var msg = 'feat(button,card): Add new feature';
+
+      m.config.scope = {
+        validate: true,
+        allowed: '*'
+      };
+
+      expect(m.validateMessage(msg)).to.equal(INVALID);
+      expect(errors[0]).to.equal('INVALID COMMIT MSG: only one scope can be provided !');
+      expect(logs).to.deep.equal([msg]);
+
+      m.config.scope = undefined;
+    });
+
+    it('should catch an invalid scope among many', function() {
+      var msg = 'feat(button,card,ripple): Add new feature';
+
+      m.config.scope = {
+        validate: true,
+        allowed: ['button', 'card'],
+        multiple: true
+      };
+
+      expect(m.validateMessage(msg)).to.equal(INVALID);
+      expect(errors[0]).to.equal('INVALID COMMIT MSG: "ripple" is not an allowed scope ! Valid scope are: ' + m.config.scope.allowed.join(', '));
+      expect(logs).to.deep.equal([msg]);
+
+      m.config.scope = undefined;
+    });
+
+    it('should allow any scope if "*" is defined', function() {
+      var msg = 'feat(anything): Fixed';
+
+      m.config.scope = {
+        validate: true
+      };
+
+      expect(m.validateMessage(msg)).to.equal(VALID);
+      expect(logs).to.deep.equal([]);
+
+      m.config.scope = undefined;
+    });
+
     it('should allow empty scope', function() {
       expect(m.validateMessage('fix: blablabla')).to.equal(VALID);
       expect(errors).to.deep.equal([]);

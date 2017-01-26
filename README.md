@@ -7,7 +7,7 @@
 [![downloads][downloads-badge]][npm-stat]
 [![MIT License][license-badge]][LICENSE]
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-24-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-25-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome][prs-badge]][prs]
 [![Donate][donate-badge]][donate]
 [![Code of Conduct][coc-badge]][coc]
@@ -34,6 +34,12 @@ You can specify options in `.vcmrc`
 ```js
 {
   "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "chore", "revert"], // default
+  "scope": {
+    required: false, // default,
+    allowed: ['button', 'card'], // default is '*' for anything,
+    validate: false, // default,
+    multiple: false // default
+  },
   "warnOnFail": false, // default
   "maxSubjectLength": 100, // default
   "subjectPattern": ".+", // default
@@ -50,6 +56,12 @@ or in `package.json`
   "config": {
     "validate-commit-msg": {
       "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "chore", "revert"], // default
+      "scope": {
+        required: false, // default,
+        allowed: ['button', 'card'], // default is '*' for anything,
+        validate: false, // default,
+        multiple: false // default
+      },
       "warnOnFail": false, // default
       "maxSubjectLength": 100, // default
       "subjectPattern": ".+", // default
@@ -72,6 +84,28 @@ You can also specify: `"types": "*"` to indicate that you don't wish to validate
 Or you can specify the name of a module that exports types according to the
 [conventional-commit-types](https://github.com/adjohnson916/conventional-commit-types)
 spec, e.g. `"types": "conventional-commit-types"`.
+
+#### scope
+
+This object defines scope requirements for the commit message. Possible properties are:
+
+##### required
+
+A boolean to define whether a scope is required for all commit messages.
+
+##### allowed
+
+An array of scopes that are allowed for your commit message.
+
+You may also define it as `"*"` which is the default to allow any scope names.
+
+##### validate
+
+A boolean to define whether or not to validate the scope(s) provided.
+
+##### multiple
+
+A boolean to define whether or not to allow multiple scopes.
 
 #### warnOnFail
 
@@ -155,7 +189,7 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | [<img src="https://avatars.githubusercontent.com/u/2112202?v=3" width="100px;"/><br /><sub>Shawn Erquhart</sub>](http://www.professant.com)<br />[💻](https://github.com/kentcdodds/validate-commit-msg/commits?author=erquhart) [📖](https://github.com/kentcdodds/validate-commit-msg/commits?author=erquhart) [⚠️](https://github.com/kentcdodds/validate-commit-msg/commits?author=erquhart) | [<img src="https://avatars.githubusercontent.com/u/194482?v=3" width="100px;"/><br /><sub>Tushar Mathur</sub>](http://tusharm.com)<br />[💻](https://github.com/kentcdodds/validate-commit-msg/commits?author=tusharmath) [⚠️](https://github.com/kentcdodds/validate-commit-msg/commits?author=tusharmath) | [<img src="https://avatars.githubusercontent.com/u/904007?v=3" width="100px;"/><br /><sub>Jason Dreyzehner</sub>](https://twitter.com/bitjson)<br />[💻](https://github.com/kentcdodds/validate-commit-msg/commits?author=bitjson) [📖](https://github.com/kentcdodds/validate-commit-msg/commits?author=bitjson) [⚠️](https://github.com/kentcdodds/validate-commit-msg/commits?author=bitjson) | [<img src="https://avatars.githubusercontent.com/u/9654923?v=3" width="100px;"/><br /><sub>Abimbola Idowu</sub>](http://twitter.com/hisabimbola)<br />[💻](https://github.com/kentcdodds/validate-commit-msg/commits?author=hisabimbola) | [<img src="https://avatars.githubusercontent.com/u/2212006?v=3" width="100px;"/><br /><sub>Gleb Bahmutov</sub>](https://glebbahmutov.com/)<br />[💻](https://github.com/kentcdodds/validate-commit-msg/commits?author=bahmutov) [⚠️](https://github.com/kentcdodds/validate-commit-msg/commits?author=bahmutov) | [<img src="https://avatars.githubusercontent.com/u/332905?v=3" width="100px;"/><br /><sub>Dennis</sub>](http://dennis.io)<br />[💻](https://github.com/kentcdodds/validate-commit-msg/commits?author=ds82) | [<img src="https://avatars.githubusercontent.com/u/6425649?v=3" width="100px;"/><br /><sub>Matt Lewis</sub>](https://mattlewis.me/)<br />[💻](https://github.com/kentcdodds/validate-commit-msg/commits?author=mattlewis92) |
 | [<img src="https://avatars.githubusercontent.com/u/323761?v=3" width="100px;"/><br /><sub>Tom Vincent</sub>](https://tlvince.com)<br />[💻](https://github.com/kentcdodds/validate-commit-msg/commits?author=tlvince) | [<img src="https://avatars.githubusercontent.com/u/615381?v=3" width="100px;"/><br /><sub>Anders D. Johnson</sub>](https://andrz.me/)<br />[💻](https://github.com/kentcdodds/validate-commit-msg/commits?author=adjohnson916) [📖](https://github.com/kentcdodds/validate-commit-msg/commits?author=adjohnson916) [⚠️](https://github.com/kentcdodds/validate-commit-msg/commits?author=adjohnson916) | [<img src="https://avatars.githubusercontent.com/u/1643758?v=3" width="100px;"/><br /><sub>James Zetlen</sub>](jameszetlen.com)<br />[💻](https://github.com/kentcdodds/validate-commit-msg/commits?author=zetlen) [⚠️](https://github.com/kentcdodds/validate-commit-msg/commits?author=zetlen) | [<img src="https://avatars.githubusercontent.com/u/235784?v=3" width="100px;"/><br /><sub>Paul Bienkowski</sub>](http://opatut.de)<br />[💻](https://github.com/kentcdodds/validate-commit-msg/commits?author=opatut) [⚠️](https://github.com/kentcdodds/validate-commit-msg/commits?author=opatut) | [<img src="https://avatars.githubusercontent.com/u/324073?v=3" width="100px;"/><br /><sub>Barney Scott</sub>](https://github.com/bmds)<br />[💻](https://github.com/kentcdodds/validate-commit-msg/commits?author=bmds) [⚠️](https://github.com/kentcdodds/validate-commit-msg/commits?author=bmds) | [<img src="https://avatars.githubusercontent.com/u/5572221?v=3" width="100px;"/><br /><sub>Emmanuel Murillo Sánchez</sub>](https://github.com/Emmurillo)<br />[💻](https://github.com/kentcdodds/validate-commit-msg/commits?author=Emmurillo) [⚠️](https://github.com/kentcdodds/validate-commit-msg/commits?author=Emmurillo) | [<img src="https://avatars.githubusercontent.com/u/968267?v=3" width="100px;"/><br /><sub>Hans Kristian Flaatten</sub>](https://starefossen.github.io)<br />[💻](https://github.com/kentcdodds/validate-commit-msg/commits?author=Starefossen) [⚠️](https://github.com/kentcdodds/validate-commit-msg/commits?author=Starefossen) |
-| [<img src="https://avatars.githubusercontent.com/u/16605186?v=3" width="100px;"/><br /><sub>Bo Lingen</sub>](https://github.com/citycide)<br />[📖](https://github.com/kentcdodds/validate-commit-msg/commits?author=citycide) | [<img src="https://avatars.githubusercontent.com/u/1057324?v=3" width="100px;"/><br /><sub>Spyros Ioakeimidis</sub>](http://www.spyros.io)<br />[💻](https://github.com/kentcdodds/validate-commit-msg/commits?author=spirosikmd) [📖](https://github.com/kentcdodds/validate-commit-msg/commits?author=spirosikmd) [⚠️](https://github.com/kentcdodds/validate-commit-msg/commits?author=spirosikmd) | [<img src="https://avatars.githubusercontent.com/u/126441?v=3" width="100px;"/><br /><sub>Matt Travi</sub>](https://matt.travi.org)<br />[🐛](https://github.com/kentcdodds/validate-commit-msg/issues?q=author%3Atravi) |
+| [<img src="https://avatars.githubusercontent.com/u/16605186?v=3" width="100px;"/><br /><sub>Bo Lingen</sub>](https://github.com/citycide)<br />[📖](https://github.com/kentcdodds/validate-commit-msg/commits?author=citycide) | [<img src="https://avatars.githubusercontent.com/u/1057324?v=3" width="100px;"/><br /><sub>Spyros Ioakeimidis</sub>](http://www.spyros.io)<br />[💻](https://github.com/kentcdodds/validate-commit-msg/commits?author=spirosikmd) [📖](https://github.com/kentcdodds/validate-commit-msg/commits?author=spirosikmd) [⚠️](https://github.com/kentcdodds/validate-commit-msg/commits?author=spirosikmd) | [<img src="https://avatars.githubusercontent.com/u/126441?v=3" width="100px;"/><br /><sub>Matt Travi</sub>](https://matt.travi.org)<br />[🐛](https://github.com/kentcdodds/validate-commit-msg/issues?q=author%3Atravi) | [<img src="https://avatars.githubusercontent.com/u/868301?v=3" width="100px;"/><br /><sub>Jonathan Garbee</sub>](http://jonathan.garbee.me)<br />[💻](https://github.com/kentcdodds/validate-commit-msg/commits?author=Garbee) [📖](https://github.com/kentcdodds/validate-commit-msg/commits?author=Garbee) [⚠️](https://github.com/kentcdodds/validate-commit-msg/commits?author=Garbee) |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
