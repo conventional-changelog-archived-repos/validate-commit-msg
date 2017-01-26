@@ -55,19 +55,7 @@ or in `package.json`
 {
   "config": {
     "validate-commit-msg": {
-      "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "chore", "revert"], // default
-      "scope": {
-        required: false, // default,
-        allowed: ['button', 'card'], // default is '*' for anything,
-        validate: false, // default,
-        multiple: false // default
-      },
-      "warnOnFail": false, // default
-      "maxSubjectLength": 100, // default
-      "subjectPattern": ".+", // default
-      "subjectPatternErrorMsg": "subject does not match subject pattern!", // default
-      "helpMessage": "", // default
-      "autoFix": false // default
+      /* your config here */
     }
   }
 }

@@ -47,7 +47,7 @@
     "istanbul": "0.4.2",
     "mocha": "2.3.4",
     "opt-cli": "1.5.1",
-    "semantic-release": "4.3.5",
+    "semantic-release": "^6.3.2",
     "sinon": "1.17.2"
   },
   "config": {
