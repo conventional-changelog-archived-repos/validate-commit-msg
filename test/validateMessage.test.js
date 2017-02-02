@@ -48,6 +48,7 @@ describe('validate-commit-msg.js', function() {
     it('should be valid', function() {
       expect(m.validateMessage('chore($controller): something')).to.equal(VALID);
       expect(m.validateMessage('chore(*): something')).to.equal(VALID);
+      expect(m.validateMessage('chore: something')).to.equal(VALID);
       expect(m.validateMessage('chore(foo-bar): something')).to.equal(VALID);
       expect(m.validateMessage('chore(guide/location): something')).to.equal(VALID);
       expect(m.validateMessage('custom(baz): something')).to.equal(VALID);
