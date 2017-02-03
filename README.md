@@ -25,6 +25,12 @@ Validates that your commit message follows this format:
 <type>(<scope>): <subject>
 ```
 
+Or without optional scope:
+
+```
+<type>: <subject>
+```
+
 ## Usage
 
 ### options
