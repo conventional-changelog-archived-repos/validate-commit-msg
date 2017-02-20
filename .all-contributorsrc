@@ -45,7 +45,7 @@
       "login": "markdalgleish",
       "name": "Mark Dalgleish",
       "avatar_url": "https://avatars.githubusercontent.com/u/696693?v=3",
-      "profile": "markdalgleish.com",
+      "profile": "http://markdalgleish.com",
       "contributions": [
         "doc"
       ]
@@ -173,7 +173,7 @@
       "login": "zetlen",
       "name": "James Zetlen",
       "avatar_url": "https://avatars.githubusercontent.com/u/1643758?v=3",
-      "profile": "jameszetlen.com",
+      "profile": "http://jameszetlen.com",
       "contributions": [
         "code",
         "test"
@@ -257,6 +257,15 @@
         "code",
         "doc",
         "test"
+      ]
+    },
+    {
+      "login": "tobiaslins",
+      "name": "Tobias Lins",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2978876?v=3",
+      "profile": "https://lins.in",
+      "contributions": [
+        "doc"
       ]
     }
   ]
