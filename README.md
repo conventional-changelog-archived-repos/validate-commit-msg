@@ -31,6 +31,15 @@ Or without optional scope:
 <type>: <subject>
 ```
 
+## Installation
+
+This module is distributed via [npm](https://www.npmjs.com/) which is bundled with [node](https://nodejs.org/) and
+should be installed as one of your project's `devDependencies`:
+
+```
+npm install --save-dev validate-commit-msg
+```
+
 ## Usage
 
 ### options
