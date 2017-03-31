@@ -267,6 +267,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "maxcnunes",
+      "name": "Max Claus Nunes",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/680356?v=3",
+      "profile": "http://blog.maxcnunes.net/",
+      "contributions": [
+        "code"
+      ]
     }
   ]
 }
