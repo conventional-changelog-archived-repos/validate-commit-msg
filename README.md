@@ -148,6 +148,14 @@ var valid = validateMessage('chore(index): an example commit message');
 // valid = true
 ```
 
+### CI
+
+You can use your CI to validate your last commit message:
+
+```
+validate-commit-msg "$(git log -1 --pretty=%B)"
+```
+
 ### Other notes
 
 If the commit message begins with `WIP` then none of the validation will happen.
