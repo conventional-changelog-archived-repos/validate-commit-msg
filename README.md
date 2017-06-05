@@ -48,7 +48,7 @@ You can specify options in `.vcmrc`
 
 ```js
 {
-  "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "chore", "revert"], // default
+  "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "build", "ci", "chore", "revert"], // default
   "scope": {
     required: false, // default,
     allowed: ['button', 'card'], // default is '*' for anything,
