@@ -148,6 +148,49 @@ var valid = validateMessage('chore(index): an example commit message');
 // valid = true
 ```
 
+### CI
+
+You can use your CI to validate your _last_ commit message:
+
+```
+validate-commit-msg "$(git log -1 --pretty=%B)"
+```
+
+_Note_ this will only validate the last commit message, not all messages in a pull request.
+
+### Monorepo
+
+If your lerna repo looks something like this:
+
+```
+my-lerna-repo/
+  package.json
+  packages/
+    package-1/
+      package.json
+    package-2/
+      package.json
+```
+
+The scope of your commit message should be one (or more) of the packages:
+
+EG:
+
+```javascript
+{
+  "config": {
+    "validate-commit-msg": {
+      "scope": {
+        "required": true,
+        "allowed": ['package-1', 'package-2'],
+        "validate": true,
+        "multiple": true
+      },
+    }
+  }
+}
+```
+
 ### Other notes
 
 If the commit message begins with `WIP` then none of the validation will happen.
