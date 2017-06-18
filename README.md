@@ -44,27 +44,29 @@ npm install --save-dev validate-commit-msg
 
 ### options
 
-You can specify options in `.vcmrc`
+You can specify options in `.vcmrc`.
+It must be valid JSON file.
+The default configuration object is:
 
-```js
+```json
 {
-  "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "build", "ci", "chore", "revert"], // default
+  "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "build", "ci", "chore", "revert"],
   "scope": {
-    required: false, // default,
-    allowed: ['button', 'card'], // default is '*' for anything,
-    validate: false, // default,
-    multiple: false // default
+    "required": false,
+    "allowed": ["*"],
+    "validate": false,
+    "multiple": false
   },
-  "warnOnFail": false, // default
-  "maxSubjectLength": 100, // default
-  "subjectPattern": ".+", // default
-  "subjectPatternErrorMsg": "subject does not match subject pattern!", // default
-  "helpMessage": "", // default
-  "autoFix": false // default
+  "warnOnFail": false,
+  "maxSubjectLength": 100,
+  "subjectPattern": ".+",
+  "subjectPatternErrorMsg": "subject does not match subject pattern!",
+  "helpMessage": "",
+  "autoFix": false
 }
 ```
 
-or in `package.json`
+Alternatively, options can be specified in `package.json`:
 
 ```javascript
 {
