@@ -68,7 +68,7 @@ The default configuration object is:
 
 Alternatively, options can be specified in `package.json`:
 
-```javascript
+```json
 {
   "config": {
     "validate-commit-msg": {
@@ -178,13 +178,13 @@ The scope of your commit message should be one (or more) of the packages:
 
 EG:
 
-```javascript
+```json
 {
   "config": {
     "validate-commit-msg": {
       "scope": {
         "required": true,
-        "allowed": ['package-1', 'package-2'],
+        "allowed": ["package-1", "package-2"],
         "validate": true,
         "multiple": true
       },
