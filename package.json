@@ -45,8 +45,10 @@
     "cz-conventional-changelog": "1.1.5",
     "husky": "0.12.0",
     "istanbul": "0.4.2",
+    "mkdirp": "^0.5.1",
     "mocha": "2.3.4",
     "opt-cli": "1.5.1",
+    "rimraf": "^2.6.1",
     "semantic-release": "^6.3.2",
     "sinon": "1.17.2"
   },

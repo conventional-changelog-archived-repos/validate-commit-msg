@@ -12,3 +12,5 @@ nohup.out
 *.ignored
 .opt-in
 .opt-out
+
+tmp
