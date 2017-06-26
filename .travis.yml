@@ -16,4 +16,3 @@ script:
   - yarn run validate
 after_success:
   - npm run report-coverage
-  - npm run semantic-release
