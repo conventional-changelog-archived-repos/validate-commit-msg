@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kentcdodds/validate-commit-msg.git"
+    "url": "https://github.com/conventional-changelog/validate-commit-msg.git"
   },
   "keywords": [
     "githook",
@@ -34,9 +34,9 @@
   "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kentcdodds/validate-commit-msg/issues"
+    "url": "https://github.com/conventional-changelog/validate-commit-msg/issues"
   },
-  "homepage": "https://github.com/kentcdodds/validate-commit-msg#readme",
+  "homepage": "https://github.com/conventional-changelog/validate-commit-msg#readme",
   "devDependencies": {
     "all-contributors-cli": "3.0.7",
     "chai": "3.4.1",
