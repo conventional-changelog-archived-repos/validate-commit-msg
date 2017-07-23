@@ -73,7 +73,7 @@ describe('cli', function() {
               var result = executeCliBySource(cliSource, commitMessage);
               expect(result.stdout.toString()).to.eql('Aborting commit due to empty commit message.\n');
               expect(result.stderr.toString()).to.eql('');
-              expect(result.status).to.eql(0);
+              expect(result.status).to.eql(1);
             });
           });
         }
@@ -87,7 +87,7 @@ describe('cli', function() {
               'Please fix your commit message (and consider using http://npm.im/commitizen)\n\n'
             ].join(''));
             expect(result.stderr.toString()).to.eql('INVALID COMMIT MSG: does not match "<type>(<scope>): <subject>" !\n');
-            expect(result.status).to.eql(0);
+            expect(result.status).to.eql(1);
           });
         });
 
@@ -103,7 +103,7 @@ describe('cli', function() {
               'INVALID COMMIT MSG: "patch" is not allowed type ! ',
               'Valid types are: feat, fix, docs, style, refactor, perf, test, chore, revert, custom\n'
             ].join(''));
-            expect(result.status).to.eql(0);
+            expect(result.status).to.eql(1);
           });
         });
       });
