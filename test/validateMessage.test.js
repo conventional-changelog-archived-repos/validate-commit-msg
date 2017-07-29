@@ -10,6 +10,7 @@ describe('validate-commit-msg.js', function() {
   var originalLog, originalError;
   var errors = [];
   var logs = [];
+  var writeFileSyncStub;
 
   var VALID = true;
   var INVALID = false;
@@ -27,6 +28,7 @@ describe('validate-commit-msg.js', function() {
 
     sinon.spy(console, 'error');
     sinon.spy(console, 'log');
+    writeFileSyncStub = sinon.stub(fs, 'writeFileSync');
 
     function fakeError() {
       var msg = format.apply(null, arguments);
@@ -40,6 +42,9 @@ describe('validate-commit-msg.js', function() {
   });
 
   afterEach(function() {
+    console.log = originalLog;
+    console.error = originalError;
+    fs.writeFileSync.restore();
     m.config.autoFix = false;
   });
 
@@ -292,8 +297,10 @@ describe('validate-commit-msg.js', function() {
     });
 
     it('should validate subject against subjectPattern if provided', function() {
-      var msg = 'chore(build): A something Z';
+      var subjectPatternBackup = m.config.subjectPattern;
       m.config.subjectPattern = /^A.*Z$/;
+
+      var msg = 'chore(build): A something Z';
       expect(m.validateMessage(msg)).to.equal(VALID);
 
       msg = 'chore(build): something';
@@ -301,24 +308,35 @@ describe('validate-commit-msg.js', function() {
 
       expect(errors).to.deep.equal(['INVALID COMMIT MSG: subject does not match subject pattern!']);
       expect(logs).to.deep.equal([msg]);
+
+      m.config.subjectPattern = subjectPatternBackup;
     });
 
     it('should lowercase type when autoFix is true and make it valid', function() {
       m.config.autoFix = true;
-      m.config.subjectPattern = /^a.*Z$/;
       var msg = 'Chore(build): A something Z';
-      expect(m.validateMessage(msg)).to.equal(VALID);
+      expect(m.validateMessage(msg, 'file')).to.equal(VALID);
     });
 
     it('should show invalid when autoFix is false and type starts with capital letter', function() {
       var msg = 'Chore(build): A something Z';
       expect(m.validateMessage(msg)).to.equal(INVALID);
     });
-  });
 
-  afterEach(function() {
-    console.log = originalLog;
-    console.error = originalError;
+    it('should update the file provided when autoFix is true and there are changes', function() {
+      m.config.autoFix = true;
+      var msg = 'Chore(build): A something Z';
+      var msgValid = 'chore(build): a something Z';
+      m.validateMessage(msg, 'file');
+      expect(writeFileSyncStub.calledWith('file', msgValid)).to.equal(VALID);
+    });
+
+    it('should not update the file provided when autoFix is true and there are no changes', function() {
+      m.config.autoFix = true;
+      var msg = 'chore(build): a something Z';
+      m.validateMessage(msg, 'file');
+      expect(writeFileSyncStub.called).to.equal(INVALID);
+    });
   });
 
 });

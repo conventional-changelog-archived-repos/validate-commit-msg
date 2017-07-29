@@ -13,5 +13,5 @@
     "custom"
   ],
   "warnOnFail": false,
-  "autoFix": false
+  "autoFix": true
 }
