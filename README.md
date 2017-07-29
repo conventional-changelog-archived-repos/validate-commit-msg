@@ -152,13 +152,12 @@ var valid = validateMessage('chore(index): an example commit message');
 
 ### CI
 
-You can use your CI to validate your _last_ commit message:
+To validate all messages in a Pull Request:
 
 ```
-validate-commit-msg "$(git log -1 --pretty=%B)"
+validate-commit-msg --from=develop
 ```
 
-_Note_ this will only validate the last commit message, not all messages in a pull request.
 
 ### Monorepo
 
