@@ -38,7 +38,9 @@
       "profile": "http://valdun.net",
       "contributions": [
         "code",
-        "test"
+        "test",
+        "bug",
+        "doc"
       ]
     },
     {
