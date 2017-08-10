@@ -70,6 +70,11 @@ describe('config', function() {
       expect(configObject.helpMessage).to.equal('fix your commit');
     });
 
+    it('returns config object given filename with .js extension', function() {
+      var configObject = config.getConfigObject('vcmrc-teststub.js');
+      expect(configObject.helpMessage).to.equal('fix commit please');
+    });
+
     it('returns null on error', function() {
       fs.readFileSync.restore();
       sinon.stub(fs, 'readFileSync', function() {
